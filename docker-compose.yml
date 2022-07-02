@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+    mssqltodolist:
+        container_name: mssqltodolist
+        build: ./mssql
+        volumes:
+            - ./mssql/data:/var/opt/mssql/data
+        # restart: always
+        env_file:
+            - .env
+        networks:
+            - todolist-mssql-network
+        ports:
+            - 1433:1433
+networks:
+    todolist-mssql-network:
+        driver: bridge
+volumes:
+    data:
